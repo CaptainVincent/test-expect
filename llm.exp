@@ -1,0 +1,15 @@
+#!/usr/bin/expect
+
+spawn ./run-llm.sh
+
+
+expect "Please enter a number from the list above:"
+send "1\r"
+
+expect "Please enter a number from the list above:"
+send "1\r"
+
+expect "Please enter a number from the list above:"
+send "1\r"
+
+expect eof

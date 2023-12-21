@@ -1,0 +1,30 @@
+name: llama2
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.head_ref || github.ref }}
+  cancel-in-progress: true
+
+on:
+  workflow_dispatch:
+    inputs:
+      logLevel:
+        description: 'Log level'
+        required: true
+        default: 'info'
+  push:
+    branches:
+      - "main"
+
+jobs:
+  run-llm:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: installl
+        run: |
+            sudo apt-get install -y libopenblas-dev expect
+            wget 'https://code.flows.network/webhook/iwYN1SdN3AmPgR5ao5Gt/run-llm.sh'
+            chmod +x run-llm.sh
+            ./llm.exp
